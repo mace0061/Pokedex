@@ -181,6 +181,21 @@ h1 img {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(3, 1fr);
     align-items: center;
+    justify-items: center;
+}
+
+#close {
+    margin: auto;
+    transform: translate(0, 0);
+    width: 100px;
+    height: 40px;
+}
+
+#caught {
+    margin: auto;
+    transform: translate(0, 0);
+    width: 100px;
+    height: 40px;
 }
 
 .detailBox {
@@ -208,6 +223,7 @@ h1 img {
     padding: 10px;
     padding-top: 30px;
     padding-bottom: 30px;
+    width: 100%;
 }
 
 #caught {
@@ -323,6 +339,11 @@ h1 img {
         font-size: 2rem;
     }
 
+    #detail .more {
+        width: 220px;
+        height: 60px;
+    }
+
     #detail {
         top: calc(50% - 425px);
         left: calc(50% - 375px);
@@ -391,9 +412,11 @@ h1 img {
     }
 
     .lowerDetails {
-        grid-row: 2/4;
-        grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        grid-row: 2/4 ;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin-top: -50px;
     }
 
     .type {
@@ -402,13 +425,12 @@ h1 img {
         font-size: 2rem;
     }
 
-    .type:nth-child(1) {
-        margin-bottom: 10px;
+    .type:nth-child(2) {
+        margin-bottom: 50px;
     }
 
     #caught {
-        grid-row: 3/3;
-        grid-column: 1/2;
-        margin-top: 50%;
+        margin: 0;
+        margin-top: 130px;
     }
 }
