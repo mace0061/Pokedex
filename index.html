@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
+</head>
+<body>
+    <div class="fixed">
+        <div class="topBorder">
+            <div class="titleBox">
+                <h1><img src="img/grey-pokeball.png" alt="grey pokeball">National Pokédex<img src="img/grey-pokeball.png" alt="grey pokeball"></h1>
+            </div>
+            
+            <div class="lightGrayBox"></div>
+        </div>
+        <div class="botBorder">
+            <div class="lightGrayBox"><button id="releaseAll" class="more" type="button">Release All</button></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="pokemonBoxes"></div>
+
+        <button id="more" class="more" type="button">More</button>
+    </div>
+
+    <div id="detail">
+        <button id="close" class="more" type="button">Close</button>
+        <div class="detailBox">
+            <img id="full" src="img/grey-pokeball.png" alt="grey pokeball">
+            <h2 id="fullName">Pokemon</h2>
+            <img id="catchIndicator" class="redPokeball" src="img/red-pokeball.png" alt="red pokeball">
+        </div>
+        <div class="lowerDetails">
+            <div id="types" class="types">
+                <div id="type1" class="type"></div>
+                <div id="type2" class="type"></div>
+            </div>
+            <div id="caught" class="more"><h3 id="catchOrRelease">Caught</h3></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
