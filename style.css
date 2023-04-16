@@ -2,8 +2,6 @@ html {
     font-family: 'Rubik', sans-serif, monospace;
     color: #585850;
     user-select: none;
-    height: -webkit-fill-available;
-    font-size: 16px;
 }
 
 body {
@@ -11,11 +9,11 @@ body {
     -webkit-text-size-adjust: 100%;
     margin: 0;
     min-width: 320px;
-    height: -webkit-fill-available;
+    display: flex;
 }
 
 .fixed {
-    position: sticky;
+    position: fixed;
     z-index: 2;
 }
 
@@ -32,13 +30,12 @@ body {
 }
 
 .titleBox {
-    margin-top: 30px;
-    margin-left: auto;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #ad943a;
-    width: 210px;
+    width: 230px;
     height: 30px;
     border-radius: 25px;
     border: 2px solid #585850;
@@ -81,11 +78,18 @@ h1 img {
     min-width: 320px;
 }
 
+.botBorder .lightGrayBox {
+    width: 130px;
+}
+
 .container {
-    padding-top: 140px;
-    padding-bottom: 153px;
+    margin-top: 103px;
+    padding-top: 37px;
+    margin-bottom: 103px;
+    padding-bottom: 50px;
     position: relative;
     background-color: #737352;
+    flex-grow: 1;
 }
 
 #pokemonBoxes {
@@ -258,9 +262,8 @@ h1 img {
 @media screen and (min-width: 1024px) {
     .titleBox {
         height: 60px;
-        width: 375px;
+        width: 395px;
         border-radius: 45px;
-        margin-top: 0;
     }
 
     h1 {
@@ -279,6 +282,10 @@ h1 img {
 
     .lightGrayBox .more {
         font-size: 1.5rem;
+    }
+
+    .botBorder .lightGrayBox {
+        width: 300px;
     }
     
     #pokemonBoxes {
@@ -311,7 +318,7 @@ h1 img {
     }
 
     .more {
-        width: 200px;
+        width: 220px;
         height: 60px;
         font-size: 2rem;
     }
