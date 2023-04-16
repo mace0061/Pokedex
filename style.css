@@ -169,13 +169,12 @@ h1 img {
 #detail {
     display: none;
     position: fixed;
-    top: calc(50% - 242.5px);
-    left: calc(50% - 175px);
+    top: calc(50% - 250px);
+    left: calc(50% - 150px);
     z-index: 3;
-    width: 350px;
+    width: 300px;
     height: 500px;
     background-color: #ffffc6;
-    margin: auto;
     border-radius: 15px;
     border: 4px solid #585850;
     box-shadow: 0 0 200px 200px #2b2b2b;
@@ -185,8 +184,8 @@ h1 img {
 }
 
 .detailBox {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     margin: auto;
     background-color: #f8f8f8;
     border: 2px solid #585850;
@@ -195,7 +194,7 @@ h1 img {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center; position: relative;
 }
 
@@ -206,8 +205,9 @@ h1 img {
     align-items: center;
     justify-content: center;
     gap: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 #caught {
@@ -220,8 +220,8 @@ h1 img {
 }
 
 #full {
-    width: 240px;
-    height: 240px;
+    width: 200px;
+    height: 200px;
     margin: auto;
 }
 
@@ -232,15 +232,15 @@ h1 img {
 }
 
 .type {
-    width: 125px;
-    height: 40px;
+    width: 100px;
+    height: 30px;
     background-color: #2f4979;
     border: 2px solid #585850;
     border-radius: 15px;
     margin: auto;
     box-shadow: 0 0 10px 2px #2b2b2b;
     color: #f8f8f8;
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: bold;
     text-shadow: 2px 2px 1px #2b2b2b;
     text-align: center;
