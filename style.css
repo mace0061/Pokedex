@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    background-color: #737352;
+    background-color: #6b6b6b;
     -webkit-text-size-adjust: 100%;
     margin: 0;
     min-width: 320px;
@@ -84,6 +84,7 @@ h1 img {
     padding-top: 140px;
     padding-bottom: 153px;
     position: relative;
+    background-color: #737352;
 }
 
 #pokemonBoxes {
