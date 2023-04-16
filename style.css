@@ -9,6 +9,11 @@ body {
     -webkit-text-size-adjust: 100%;
 }
 
+.fixed {
+    position: sticky;
+    z-index: 2;
+}
+
 .topBorder {
     background-color: #6b6b6b;
     height: 100px;
@@ -16,7 +21,6 @@ body {
     border-bottom: 3px solid #2b2b2b;
     display: flex;
     position: fixed;
-    min-width: 390px;
     z-index: 2;
     align-items: center;
 }
@@ -66,8 +70,7 @@ h1 img {
     border-top: 3px solid #2b2b2b;
     display: flex;
     position: fixed;
-    top: calc(100vh - 103px);
-    min-width: 390px;
+    top: calc(100% - 103px);
     z-index: 2;
 }
 
