@@ -19,20 +19,20 @@
             <div class="lightGrayBox"></div>
         </div>
         <div class="botBorder">
-            <div class="lightGrayBox"><button id="releaseAll" class="more" type="button">Release All</button></div>
+            <div class="lightGrayBox"><button id="releaseAll" class="more clickable" tabindex="5" type="button">Release All</button></div>
         </div>
     </div>
 
     <div class="container">
         <div id="pokemonBoxes"></div>
 
-        <button id="more" class="more" type="button">More</button>
+        <button id="more" class="more clickable" tabindex="4" type="button">More</button>
     </div>
 
     <div id="detail">
-        <button id="close" class="more" type="button">Close</button>
+        <button id="close" class="more unclickable" tabindex="3" inert="true" type="button">Close</button>
         <div class="detailBox">
-            <img id="full" src="img/grey-pokeball.png" alt="grey pokeball">
+            <img id="full" src="img/grey-pokeball.png" alt="placeholder image for the pokemon's official artwork">
             <h2 id="fullName">Pokemon</h2>
             <img id="catchIndicator" class="redPokeball" src="img/red-pokeball.png" alt="red pokeball">
         </div>
@@ -41,7 +41,7 @@
                 <div id="type1" class="type"></div>
                 <div id="type2" class="type"></div>
             </div>
-            <div id="caught" class="more"><h3 id="catchOrRelease">Caught</h3></div>
+            <div id="caught" class="more unclickable" tabindex="2" inert="true"><h3 id="catchOrRelease">Caught</h3></div>
         </div>
     </div>
 

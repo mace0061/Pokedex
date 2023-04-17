@@ -13,7 +13,7 @@ const pokemon = {}
 // add the first 20 pokemonBox elements
 for (let i = 1; i < 21; i++) {
     count++
-    let htmlCode = (`<div data-number=${count} id="pokBox${count}" class="pokemonBox"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="grey pokeball"><h2 data-number=${count} id="poName${count}">#${count}</h2><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="red pokeball"></div>`)
+    let htmlCode = (`<div data-number=${count} tabindex="1" id="pokBox${count}" class="pokemonBox clickable"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="placeholder image for pokemon ${count}"><h2 data-number=${count} id="poName${count}">#${count}</h2><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="caught icon, a red pokeball"></div>`)
     $boxes.insertAdjacentHTML('beforeend', htmlCode)
     pokemon[count] = 
         {
@@ -29,29 +29,45 @@ const detail = document.querySelectorAll('.pokemonBox');
 
 // add click event listeners to the all pokemonBox elements (only works on the ones that load initially)
 detail.forEach(pokemonBox => {
-  pokemonBox.addEventListener('click', openDetail)
+    pokemonBox.addEventListener('click', function () {
+        let eventId = this.id
+        openDetail(eventId)
+    })
+    
+    pokemonBox.addEventListener('keydown', function(event) {
+        isEnter(event.key, event.target.id)
+    })
 })
+
+function isEnter(eventKey, thisId) {
+    let name = eventKey
+    let eventId = thisId
+    if (name === 'Enter') {
+        document.getElementById(eventId).click()
+    }
+}
 
 let dexNo
 let whichPokemon
 
 // function that runs to open the details overlay when any pokemonBox is clicked and fills it with the info of the clicked pokemon
-function openDetail(event) {
+function openDetail(selectedId) {
+    swapOverlay()
     document.getElementById('detail').style.display = 'grid'
-    let clickedId = event.target.id
-    const $currentPokemon = document.getElementById(clickedId)
+    document.getElementById('type2').style.display = 'none'
+    document.getElementById('caught').focus()
+    const $currentPokemon = document.getElementById(selectedId)
     dexNo = $currentPokemon.dataset.number
     let fullName = pokemon[dexNo].name + " # " + dexNo
     whichPokemon = "catch" + dexNo
     document.getElementById('fullName').innerHTML = fullName
-    let type1 = (`<h3>Type 1</h3>`)
-    let type2 = (`<h3>Type 2</h3>`)
     document.getElementById('type1').innerHTML = pokemon[dexNo].type1
     if ('type2' in pokemon[dexNo]) {
         document.getElementById('type2').style.display = 'flex'
         document.getElementById('type2').innerHTML = pokemon[dexNo].type2
     }
     document.getElementById('full').src = pokemon[dexNo].fullImage
+    document.getElementById('full').alt = "official artwork of pokemon " + (dexNo) + ", " + pokemon[dexNo].name
     if (pokemon[dexNo].isCaught === 'yes')
     {
         document.getElementById('catchIndicator').classList.add("isCaught")
@@ -67,9 +83,15 @@ $more.addEventListener('click',
         boxes.length = 0
         for (let i = 1; i < 21; i++) {
             count++
-            let htmlCode = (`<div data-number=${count} id="pokBox${count}" class="pokemonBox"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="grey pokeball"><h2 data-number=${count} id="poName${count}">#${count}</h2><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="red pokeball"></div>`)
+            let htmlCode = (`<div data-number=${count} tabindex="1" id="pokBox${count}" class="pokemonBox clickable"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="placeholder image for pokemon ${count}"><h2 data-number=${count} id="poName${count}">#${count}</h2><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="caught icon, a red pokeball"></div>`)
             $boxes.insertAdjacentHTML('beforeend', htmlCode)
-            document.getElementById('pokBox' + count).addEventListener('click', openDetail)
+            document.getElementById('pokBox' + count).addEventListener('click', function () {
+                let eventId = this.id
+                openDetail(eventId)
+            })
+            document.getElementById('pokBox' + count).addEventListener('keydown', function(event) {
+                isEnter(event.key, event.target.id)
+            })
             pokemon[count] = 
                 {
                     number: count
@@ -88,7 +110,9 @@ const $close = document.getElementById('close')
 
 $close.addEventListener('click',
     function () {
+        swapOverlay()
         document.getElementById('detail').style.display = 'none'
+        document.getElementById('pokBox' + dexNo).focus()
         document.getElementById('catchIndicator').classList.remove("isCaught")
         document.getElementById('catchOrRelease').innerHTML = (`Caught`)
         document.getElementById('type2').style.display = 'none'
@@ -113,6 +137,10 @@ $caught.addEventListener('click',
         document.getElementById(whichPokemon).classList.toggle("isCaught")
     }
 )
+
+$caught.addEventListener('keydown', function(event) {
+    isEnter(event.key, event.target.id)
+})
 
 
 // a release all button that removes the caught icons from all pokemon and clears the local storage
@@ -180,6 +208,7 @@ async function fetchPokemonData () {
             pokemon[thisNumber + 1].type2 = capitalized
         }
         document.getElementById('sprite' + (thisNumber+1)).src = pokemon[thisNumber + 1].sprite
+        document.getElementById('sprite' + (thisNumber+1)).alt = "sprite artwork of pokemon " + (thisNumber + 1) + ", " + pokemon[thisNumber + 1].name
         thisNumber++
     }
 }
@@ -202,4 +231,19 @@ async function fetchAdditionalPokemon () {
         document.getElementById('poName' + useNumber).insertAdjacentHTML('beforebegin', capitalized)
         fetchPokemonData()
     }
+}
+
+function swapOverlay () {
+    let clickableElements = document.querySelectorAll('.clickable')
+    let unclickableElements = document.querySelectorAll('.unclickable')
+    clickableElements.forEach(element => {
+        element.inert = true
+        element.classList.toggle("clickable")
+        element.classList.toggle("unclickable")
+    })
+    unclickableElements.forEach(element => {
+        element.inert = false
+        element.classList.toggle("clickable")
+        element.classList.toggle("unclickable")
+    })
 }

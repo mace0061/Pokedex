@@ -116,8 +116,14 @@ h1 img {
     position: relative;
 }
 
-.pokemonBox:hover {
+.pokemonBox:focus {
     background-color: #8c8c8c;
+    outline: 6px solid #f8f8f8;
+}
+
+.more:focus {
+    background-color: #521b0a;
+    outline: 6px solid #2b2b2b;
 }
 
 .sprite {
@@ -159,11 +165,6 @@ h1 img {
     box-shadow: 0 0 10px 4px #2b2b2b;
     margin-left: 50%;
     transform: translate(-50%, 0);
-}
-
-.more:hover {
-    background-color: #e4cc43;
-    color: #585850;
 }
 
 #detail {
@@ -382,6 +383,14 @@ h1 img {
         grid-template-columns: repeat(5, 1fr);
         row-gap: 125px;
         margin-bottom: 125px;
+    }
+
+    .pokemonBox:hover {
+        background-color: #8c8c8c;
+    }
+    
+    .more:hover {
+        background-color: #521b0a;
     }
 
     #detail {
