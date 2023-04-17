@@ -13,7 +13,7 @@ const pokemon = {}
 // add the first 20 pokemonBox elements
 for (let i = 1; i < 21; i++) {
     count++
-    let htmlCode = (`<div data-number=${count} tabindex="1" id="pokBox${count}" class="pokemonBox clickable" role="button"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="placeholder image for pokemon ${count}"><h4 data-number=${count} id="poName${count}">#${count}</h4><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="caught icon, a red pokeball"></div>`)
+    let htmlCode = (`<div data-number=${count} tabindex="0" id="pokBox${count}" class="pokemonBox clickable" role="button"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="placeholder image for pokemon ${count}"><h4 data-number=${count} id="poName${count}">#${count}</h4><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="caught icon, a red pokeball"></div>`)
     $boxes.insertAdjacentHTML('beforeend', htmlCode)
     pokemon[count] = 
         {
@@ -49,7 +49,6 @@ function openDetail(selectedId) {
     swapOverlay()
     document.getElementById('detail').style.display = 'grid'
     document.getElementById('type2').style.display = 'none'
-    document.getElementById('caught').focus()
     const $currentPokemon = document.getElementById(selectedId)
     dexNo = $currentPokemon.dataset.number
     let fullName = pokemon[dexNo].name + " # " + dexNo
@@ -78,7 +77,7 @@ $more.addEventListener('click',
         document.getElementById('pokBox' + count).focus()
         for (let i = 1; i < 21; i++) {
             count++
-            let htmlCode = (`<div data-number=${count} tabindex="1" id="pokBox${count}" class="pokemonBox clickable" role="button"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="placeholder image for pokemon ${count}"><h4 data-number=${count} id="poName${count}">#${count}</h4><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="caught icon, a red pokeball"></div>`)
+            let htmlCode = (`<div data-number=${count} tabindex="0" id="pokBox${count}" class="pokemonBox clickable" role="button"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="placeholder image for pokemon ${count}"><h4 data-number=${count} id="poName${count}">#${count}</h4><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="caught icon, a red pokeball"></div>`)
             $boxes.insertAdjacentHTML('beforeend', htmlCode)
             document.getElementById('pokBox' + count).addEventListener('click', function () {
                 let eventId = this.id
