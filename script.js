@@ -75,6 +75,7 @@ const $more = document.getElementById('more')
 $more.addEventListener('click',
     function () {
         boxes.length = 0
+        document.getElementById('pokBox' + count).focus()
         for (let i = 1; i < 21; i++) {
             count++
             let htmlCode = (`<div data-number=${count} tabindex="1" id="pokBox${count}" class="pokemonBox clickable" role="button"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="placeholder image for pokemon ${count}"><h4 data-number=${count} id="poName${count}">#${count}</h4><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="caught icon, a red pokeball"></div>`)
