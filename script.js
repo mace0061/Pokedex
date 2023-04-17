@@ -13,7 +13,7 @@ const pokemon = {}
 // add the first 20 pokemonBox elements
 for (let i = 1; i < 21; i++) {
     count++
-    let htmlCode = (`<div data-number=${count} tabindex="1" id="pokBox${count}" class="pokemonBox clickable"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="placeholder image for pokemon ${count}"><h2 data-number=${count} id="poName${count}">#${count}</h2><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="caught icon, a red pokeball"></div>`)
+    let htmlCode = (`<div data-number=${count} tabindex="1" id="pokBox${count}" class="pokemonBox clickable" role="button"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="placeholder image for pokemon ${count}"><h4 data-number=${count} id="poName${count}">#${count}</h4><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="caught icon, a red pokeball"></div>`)
     $boxes.insertAdjacentHTML('beforeend', htmlCode)
     pokemon[count] = 
         {
@@ -35,17 +35,11 @@ detail.forEach(pokemonBox => {
     })
     
     pokemonBox.addEventListener('keydown', function(event) {
-        isEnter(event.key, event.target.id)
+        isEnter(event.code, event.target.id)
     })
 })
 
-function isEnter(eventKey, thisId) {
-    let name = eventKey
-    let eventId = thisId
-    if (name === 'Enter') {
-        document.getElementById(eventId).click()
-    }
-}
+
 
 let dexNo
 let whichPokemon
@@ -83,14 +77,14 @@ $more.addEventListener('click',
         boxes.length = 0
         for (let i = 1; i < 21; i++) {
             count++
-            let htmlCode = (`<div data-number=${count} tabindex="1" id="pokBox${count}" class="pokemonBox clickable"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="placeholder image for pokemon ${count}"><h2 data-number=${count} id="poName${count}">#${count}</h2><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="caught icon, a red pokeball"></div>`)
+            let htmlCode = (`<div data-number=${count} tabindex="1" id="pokBox${count}" class="pokemonBox clickable" role="button"><img data-number=${count} id="sprite${count}" class="sprite" src="img/grey-pokeball.png" alt="placeholder image for pokemon ${count}"><h4 data-number=${count} id="poName${count}">#${count}</h4><img data-number=${count} id="catch${count}" class="redPokeball" src="img/red-pokeball.png" alt="caught icon, a red pokeball"></div>`)
             $boxes.insertAdjacentHTML('beforeend', htmlCode)
             document.getElementById('pokBox' + count).addEventListener('click', function () {
                 let eventId = this.id
                 openDetail(eventId)
             })
             document.getElementById('pokBox' + count).addEventListener('keydown', function(event) {
-                isEnter(event.key, event.target.id)
+                isEnter(event.code, event.target.id)
             })
             pokemon[count] = 
                 {
@@ -139,7 +133,7 @@ $caught.addEventListener('click',
 )
 
 $caught.addEventListener('keydown', function(event) {
-    isEnter(event.key, event.target.id)
+    isEnter(event.code, event.target.id)
 })
 
 
@@ -181,7 +175,7 @@ async function fetchInitialPokemon () {
         let remainingLetters = thisName.slice(1)
         let capitalized = firstLetterCap + remainingLetters
         pokemon[thisNumber].name = capitalized
-        document.getElementById('poName' + thisNumber).insertAdjacentHTML('beforebegin', capitalized)
+        document.getElementById('poName' + thisNumber).insertAdjacentHTML('beforebegin', (`<h4>${capitalized}</h4>`))
     }
     fetchPokemonData()
 }
@@ -230,6 +224,14 @@ async function fetchAdditionalPokemon () {
         pokemon[useNumber].name = capitalized
         document.getElementById('poName' + useNumber).insertAdjacentHTML('beforebegin', capitalized)
         fetchPokemonData()
+    }
+}
+
+function isEnter(eventCode, thisId) {
+    let code = eventCode
+    let eventId = thisId
+    if (code === 'Enter' || code === 'Space') {
+        document.getElementById(eventId).click()
     }
 }
 
